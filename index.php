@@ -268,7 +268,7 @@ class TelegramProcess{
 			
 		case 'leave':
 			$uid=$message->getFrom()->getId();
-            if($uid==231158758){
+            if($uid== admin id ){
 			$bot->sendMessage($message->getChat()->getId(), "GoodBye");
             $bot->leaveChat($message->getChat()->getId()); 
 			}
@@ -276,7 +276,7 @@ class TelegramProcess{
 		
 		// case 'kick':
 			// $uid=$message->getFrom()->getId();
-            // if($uid==231158758){
+            // if($uid==){
 			// $bot->sendMessage($message->getChat()->getId(), "GoodBye",);
 			// $target=$message->getChat()->getreplytomessageId();
             // $bot->kickChatMember($target,$replyToMessageId = $message->getreplytomessageId()); 
@@ -391,7 +391,7 @@ class TelegramProcess{
 		break;
 		
 		case 'ipip':
-		if ($message->getChat()->getId() == '-1001140368637'){
+		if ($message->getChat()->getId() == 'group id'){
 		$bot->sendChatAction($message->getChat()->getId(), 'typing');
 		
 		$status='';
