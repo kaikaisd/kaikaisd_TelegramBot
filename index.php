@@ -107,14 +107,14 @@ class TelegramProcess{
 				
 				$url_dmhy = "https://bangumi.moe/rss/latest";
 				$rss = simplexml_load_file($url_dmhy);
-                $sitename = $rss->channel->title ;
+                		$sitename = $rss->channel->title ;
 				$responce = '';
 				$dmhygettime = 0;
 				$final_result ='';
 					
 				foreach( $rss->channel->item as $item )
 				{
-								//指定尋找位置
+				//指定尋找位置
 								$dmhygroup = $item->author;
 								$title = $item->title ;  
 								$link = $item->link ;  
@@ -268,20 +268,20 @@ class TelegramProcess{
 			
 		case 'leave':
 			$uid=$message->getFrom()->getId();
-            if($uid== admin id ){
-			$bot->sendMessage($message->getChat()->getId(), "GoodBye");
-            $bot->leaveChat($message->getChat()->getId()); 
+		    	if($uid== admin id ){
+				$bot->sendMessage($message->getChat()->getId(), "GoodBye");
+            			$bot->leaveChat($message->getChat()->getId()); 
 			}
         break;
 		
-		// case 'kick':
-			// $uid=$message->getFrom()->getId();
-            // if($uid==){
-			// $bot->sendMessage($message->getChat()->getId(), "GoodBye",);
-			// $target=$message->getChat()->getreplytomessageId();
-            // $bot->kickChatMember($target,$replyToMessageId = $message->getreplytomessageId()); 
-			// }
-        // break;
+	case 'kick':
+			$uid=$message->getreplyformmessgae()->getFrom()->getId();
+            		 if($uid!==null){
+			$bot->sendMessage($message->getChat()->getId(), "GoodBye",);
+			 $target=$message->getreplytomessageId()->getChat()->getId();
+           		  $bot->kickChatMember($target,$replyToMessageId = $message->getreplytomessageId()); 
+			 }
+         break;
 		
         case 'start':
 			$bot->sendChatAction($message->getChat()->getId(), 'typing');
@@ -502,6 +502,11 @@ class TelegramProcess{
 					$bot->sendMessage($message->getChat()->getId(),'ERROR : '.$status, $parseMode = null, $disablePreview = true, 	$replyToMessageId = $message->getMessageId() );
 					exit();
 			}
+				if(strpos($info->country_name, 'limited')==ture){
+					$status = $info->country_name;
+					$bot->sendMessage($message->getChat()->getId(),'ERROR : '.$status, $parseMode = null, $disablePreview = true, 	$replyToMessageId = $message->getMessageId() );
+					exit();
+				}
 		
 		
 			$city ='<code>';
